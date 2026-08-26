@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, Wrench } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/logo_only.png';
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +20,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2">
-            <Wrench className="h-8 w-8 text-primary-400" />
+            <img src={logo} alt="Metro Cool Engineering Logo" className="h-10 w-10" />
             <span className="text-xl font-bold">Metro Cool Engineering</span>
           </Link>
 
