@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, Wrench } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import logo from '../assets/logo_only.png';
 
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/');
-  };
 
   return (
     <nav className="bg-secondary-900 text-white sticky top-0 z-50">
@@ -30,25 +22,6 @@ const Navbar = () => {
             <Link to="/about" className="hover:text-primary-400 transition-colors">About</Link>
             <Link to="/services" className="hover:text-primary-400 transition-colors">Services</Link>
             <Link to="/contact" className="hover:text-primary-400 transition-colors">Contact</Link>
-            
-            {user ? (
-              <>
-                <Link to="/dashboard" className="hover:text-primary-400 transition-colors">Dashboard</Link>
-                {user.role === 'admin' && (
-                  <Link to="/admin" className="hover:text-primary-400 transition-colors">Admin</Link>
-                )}
-                <button onClick={handleLogout} className="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-lg transition-colors">
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="hover:text-primary-400 transition-colors">Login</Link>
-                <Link to="/register" className="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-lg transition-colors">
-                  Register
-                </Link>
-              </>
-            )}
           </div>
 
           {/* Mobile menu button */}
@@ -69,23 +42,6 @@ const Navbar = () => {
             <Link to="/about" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>About</Link>
             <Link to="/services" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Services</Link>
             <Link to="/contact" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Contact</Link>
-            
-            {user ? (
-              <>
-                <Link to="/dashboard" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Dashboard</Link>
-                {user.role === 'admin' && (
-                  <Link to="/admin" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Admin</Link>
-                )}
-                <button onClick={() => { handleLogout(); setIsOpen(false); }} className="w-full text-left py-2 hover:text-primary-400 transition-colors">
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Login</Link>
-                <Link to="/register" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Register</Link>
-              </>
-            )}
           </div>
         </div>
       )}

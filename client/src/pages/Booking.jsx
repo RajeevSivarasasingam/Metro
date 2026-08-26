@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import { toast } from 'sonner';
 
 const Booking = () => {
-  const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [services, setServices] = useState([]);
@@ -13,14 +11,14 @@ const Booking = () => {
   const [submitting, setSubmitting] = useState(false);
   
   const [formData, setFormData] = useState({
-    customerName: user?.name || '',
-    phone: user?.phone || '',
-    email: user?.email || '',
+    customerName: '',
+    phone: '',
+    email: '',
     service: location.state?.serviceId || '',
     acType: '',
     acBrand: '',
     problemDescription: '',
-    address: user?.address || '',
+    address: '',
     preferredDate: '',
     preferredTime: '',
     notes: '',
@@ -52,15 +50,22 @@ const Booking = () => {
     e.preventDefault();
     setSubmitting(true);
 
-    const bookingData = {
-      ...formData,
-      user: user?._id,
-    };
-
     try {
-      const response = await api.post('/bookings', bookingData);
+      const response = await api.post('/bookings', formData);
       toast.success('Booking created successfully!');
-      navigate('/dashboard/bookings');
+      setFormData({
+        customerName: '',
+        phone: '',
+        email: '',
+        service: location.state?.serviceId || '',
+        acType: '',
+        acBrand: '',
+        problemDescription: '',
+        address: '',
+        preferredDate: '',
+        preferredTime: '',
+        notes: '',
+      });
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to create booking');
     } finally {
