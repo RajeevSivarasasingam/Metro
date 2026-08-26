@@ -3,9 +3,30 @@ const Booking = require('../models/Booking');
 // @desc    Create new booking
 // @route   POST /api/bookings
 // @access  Public
+
+
 const createBooking = async (req, res) => {
   try {
-    const booking = await Booking.create(req.body);
+
+    // Use express-validator (already in dependencies)
+const { body, validationResult } = require('express-validator');
+
+router.post('/', [
+  body('customerName').trim().notEmpty().withMessage('Name required'),
+  body('email').isEmail().normalizeEmail(),
+  body('phone').matches(/^[0-9\-\+\s]+$/).withMessage('Invalid phone'),
+  body('acType').isIn(['Split AC', 'Window AC', 'Central AC', 'Cassette AC', 'Other']),
+  body('preferredDate').isISO8601().custom(date => {
+    if (new Date(date) < new Date()) throw new Error('Date must be in future');
+    return true;
+  }),
+], (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ success: false, errors: errors.array() });
+  }
+  next();
+}, createBooking);
 
     // Populate service details
     await booking.populate('service');
