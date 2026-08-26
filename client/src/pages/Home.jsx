@@ -34,7 +34,8 @@ const Home = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Reliable AC Solutions for Your Home and Business
+
+                Reliable AC Solutions for Your Home and Business 
               </h1>
               <p className="text-xl text-gray-300 mb-8">
                 Professional AC repair, installation, and maintenance services. Fast response, expert technicians, and quality workmanship.
