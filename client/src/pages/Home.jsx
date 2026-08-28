@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Wrench, Clock, Shield, DollarSign, Star, ArrowRight, CheckCircle } from 'lucide-react';
+import { Wrench, Clock, Shield, DollarSign, Star, ArrowRight, CheckCircle,MessageCircle } from 'lucide-react';
 import api from '../services/api';
+ 
+import img1 from '../assets/hero1.jpg';
+import img2 from '../assets/hero2.jpg';
+import img3 from '../assets/hero3.jpg';  
 
 const Home = () => {
   const [services, setServices] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const serviceImages = [img1, img2, img3];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % serviceImages.length);
+    }, 5000); // Change slide every 5 seconds
+    
+    return () => clearInterval(interval);
+  }, [serviceImages.length]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,32 +45,60 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-secondary-900 to-secondary-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+      <section className="relative overflow-hidden min-h-[540px] text-white">
+        <div className="absolute inset-0 flex transition-transform duration-1000 ease-in-out">
+          <div
+            className="flex h-full w-full transition-transform duration-1000 ease-in-out"
+            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+          >
+            {serviceImages.map((image, index) => (
+              <div
+                key={index}
+                className="w-full h-[540px] flex-shrink-0 bg-cover bg-center" 
+                style={{
+                  backgroundImage: `linear-gradient(90deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.6) 40%, rgba(15, 23, 42, 0.45) 100%), url(${image})`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
 
-                Reliable AC Solutions for Your Home and Business 
-              </h1>
-              <p className="text-xl text-gray-300 mb-8">
-                Professional AC repair, installation, and maintenance services. Fast response, expert technicians, and quality workmanship.
+        <div className="absolute inset-0 bg-slate-900/20" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="max-w-2xl">
+              <p className="text-lg text-primary-400 font-semibold mb-4 flex items-center gap-2">
+                <CheckCircle className="h-6 w-6" />
+                Trusted AC Services
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/booking" className="btn-primary text-center">
-                  Book a Service
-                </Link>
-                <Link to="/contact" className="btn-outline text-center">
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <div className="bg-primary-600 rounded-full p-12">
-                <Wrench className="h-48 w-48 text-white" />
-              </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              Reliable AC Solutions for Your Home and Business
+            </h1>
+            <p className="text-xl text-gray-200 mb-8">
+              Professional AC repair, installation, and maintenance services. Fast response and quality workmanship.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/booking" className="btn-primary text-center">
+                Book a Service
+              </Link>
+              <Link to="/contact" className="btn-outline text-center">
+                Contact Us
+              </Link>
             </div>
           </div>
+        </div>
+
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {serviceImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`h-2.5 rounded-full transition-all ${
+                currentSlide === index ? 'w-8 bg-white' : 'w-2.5 bg-white/60'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 
@@ -237,6 +281,18 @@ const Home = () => {
           </Link>
         </div>
       </section>
+
+      <a
+        href="https://wa.me/0771754835"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Contact us on WhatsApp"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-3 font-semibold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#1ebe5d]"
+      >
+        <MessageCircle className="h-10 w-10" />
+           WhatsApp
+      </a>
+
     </div>
   );
 };
