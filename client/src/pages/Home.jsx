@@ -13,6 +13,23 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   const serviceImages = [img1, img2, img3];
+  const featuredServices = [
+    {
+      name: 'AC Installation',
+      description: 'Professional installation for homes and businesses, set up for reliable and energy-efficient cooling.',
+      icon: Settings,
+    },
+    {
+      name: 'AC Repair',
+      description: 'Fast diagnosis and dependable repairs for cooling problems, electrical faults, leaks, and unusual noise.',
+      icon: Wrench,
+    },
+    {
+      name: 'Gas Refilling',
+      description: 'Refrigerant checks, leak detection, and gas refilling to restore your AC\'s cooling performance.',
+      icon: Gauge,
+    },
+  ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -45,8 +62,8 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative overflow-hidden min-h-[540px] text-white">
-        <div className="absolute inset-0 flex transition-transform duration-1000 ease-in-out">
+      <section className="relative overflow-hidden min-h-screen md:min-h-[520px] lg:min-h-[700px] text-white">
+        <div className="absolute inset-0 ">
           <div
             className="flex h-full w-full transition-transform duration-1000 ease-in-out"
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -54,9 +71,11 @@ const Home = () => {
             {serviceImages.map((image, index) => (
               <div
                 key={index}
-                className="w-full h-[540px] flex-shrink-0 bg-cover bg-center" 
+                className="w-full h-screen md:h-[520px] lg:h-[700px] flex-shrink-0 bg-cover bg-center" 
                 style={{
                   backgroundImage: `linear-gradient(90deg, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.6) 40%, rgba(15, 23, 42, 0.45) 100%), url(${image})`,
+                  backgroundAttachment: 'cover',
+                  backgroundPosition: 'center',
                 }}
               />
             ))}
@@ -68,6 +87,7 @@ const Home = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="max-w-2xl">
               <p className="text-lg text-primary-400 font-semibold mb-4 flex items-center gap-2">
+                 
                 <CheckCircle className="h-6 w-6" />
                 Trusted AC Services
               </p>
@@ -87,7 +107,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-
+            {/* Slide Indicators */}
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
           {serviceImages.map((_, index) => (
             <button
@@ -112,32 +132,33 @@ const Home = () => {
             </p>
           </div>
           
-          {loading ? (
-            <div className="grid md:grid-cols-3 gap-8">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="card animate-pulse">
-                  <div className="h-48 bg-gray-200 rounded-lg mb-4"></div>
-                  <div className="h-6 bg-gray-200 rounded mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded"></div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-3 gap-8">
-              {services.map((service) => (
-                <div key={service._id} className="card hover:shadow-lg transition-shadow">
-                  <div className="h-48 bg-primary-100 rounded-lg mb-4 flex items-center justify-center">
-                    <Wrench className="h-24 w-24 text-primary-600" />
+          <div className="grid gap-6 md:grid-cols-3">
+            {featuredServices.map((featuredService) => {
+              const service = services.find((item) =>
+                item.name.toLowerCase().includes(featuredService.name.toLowerCase()),
+              );
+              const Icon = featuredService.icon;
+
+              return (
+                <article
+                  key={featuredService.name}
+                  className="group flex min-h-[290px] flex-col border border-gray-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl"
+                >
+                  <div className="mb-6 flex h-14 w-14 items-center justify-center bg-primary-100 text-primary-600 transition-colors duration-300 group-hover:bg-primary-600 group-hover:text-white">
+                    <Icon className="h-7 w-7" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">{service.name}</h3>
-                  <p className="text-gray-600 mb-4">{service.shortDescription}</p>
-                  <Link to={`/services/${service._id}`} className="text-primary-600 hover:text-primary-700 font-semibold inline-flex items-center">
-                    View Details <ArrowRight className="ml-2 h-4 w-4" />
+                  <h3 className="mb-3 text-xl font-semibold text-gray-900">{featuredService.name}</h3>
+                  <p className="mb-6 flex-grow leading-7 text-gray-600">{featuredService.description}</p>
+                  <Link
+                    to={service ? `/services/${service._id}` : '/services'}
+                    className="inline-flex items-center font-semibold text-primary-600 transition-colors hover:text-primary-700"
+                  >
+                    View Details <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
-                </div>
-              ))}
-            </div>
-          )}
+                </article>
+              );
+            })}
+          </div>
           
           <div className="text-center mt-12">
             <Link to="/services" className="btn-primary">
