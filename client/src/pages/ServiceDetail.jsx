@@ -4,6 +4,34 @@ import { Wrench, ArrowLeft, CheckCircle } from 'lucide-react';
 import api from '../services/api';
 import { toast } from 'sonner';
 
+import pic1 from '../assets/Ac_install.jpg';
+import pic2 from '../assets/Ac_repair.jpg';
+import pic3 from '../assets/Ac_gas_refill.jpg';
+import pic4 from '../assets/Ac_maintenance.jpg';
+import pic5 from '../assets/Ac_cleaning.jpg';
+
+const serviceImageMap = {
+  install: pic1,
+  repair: pic2,
+  gas: pic3,
+  refill: pic3,
+  maint: pic4,
+  clean: pic5,
+  inspect: pic5,
+};
+
+const getServiceImage = (serviceName = '') => {
+  const normalizedName = serviceName.toLowerCase();
+
+  for (const [keyword, image] of Object.entries(serviceImageMap)) {
+    if (normalizedName.includes(keyword)) {
+      return image;
+    }
+  }
+
+  return pic1;
+};
+
 const ServiceDetail = () => {
   const { id } = useParams();
   const [service, setService] = useState(null);
@@ -58,8 +86,12 @@ const ServiceDetail = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <div className="bg-primary-100 rounded-lg p-12 flex items-center justify-center">
-                <Wrench className="h-48 w-48 text-primary-600" />
+              <div className="overflow-hidden rounded-lg bg-primary-100">
+                <img
+                  src={service.image || getServiceImage(service.name)}
+                  alt={service.name}
+                  className="h-[420px] w-full object-cover"
+                />
               </div>
             </div>
             <div>
