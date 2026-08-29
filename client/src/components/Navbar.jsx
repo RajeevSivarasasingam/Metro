@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import logo from '../assets/logo_only.png';
 
 
@@ -22,6 +22,10 @@ const Navbar = () => {
             <Link to="/about" className="hover:text-primary-400 transition-colors">About</Link>
             <Link to="/services" className="hover:text-primary-400 transition-colors">Services</Link>
             <Link to="/contact" className="hover:text-primary-400 transition-colors">Contact</Link>
+            <a href="tel:+94771754835" className="flex items-center gap-2 font-semibold hover:text-primary-400 transition-colors">
+              <Phone className="h-4 w-4" />
+              +94 (077) 175 4835
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -42,6 +46,10 @@ const Navbar = () => {
             <Link to="/about" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>About</Link>
             <Link to="/services" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Services</Link>
             <Link to="/contact" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Contact</Link>
+            <a href="tel:+15551234567" className="flex items-center gap-2 py-2 font-semibold hover:text-primary-400 transition-colors">
+              <Phone className="h-4 w-4" />
+              +1 (555) 123-4567
+            </a>
           </div>
         </div>
       )}
