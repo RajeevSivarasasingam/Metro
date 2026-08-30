@@ -1,35 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Wrench, Clock, Shield, DollarSign, Star, ArrowRight, CheckCircle,MessageCircle } from 'lucide-react';
+import { Clock, Shield, DollarSign, Star, CheckCircle, MessageCircle } from 'lucide-react';
 import api from '../services/api';
+import { ServicesGrid } from './Services';
  
 import img1 from '../assets/hero1.jpg';
 import img2 from '../assets/hero2.jpg';
 import img3 from '../assets/hero3.jpg';  
 
 const Home = () => {
-  const [services, setServices] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const serviceImages = [img1, img2, img3];
-  const featuredServices = [
-    {
-      name: 'AC Installation',
-      description: 'Professional installation for homes and businesses, set up for reliable and energy-efficient cooling.',
-      icon: Settings,
-    },
-    {
-      name: 'AC Repair',
-      description: 'Fast diagnosis and dependable repairs for cooling problems, electrical faults, leaks, and unusual noise.',
-      icon: Wrench,
-    },
-    {
-      name: 'Gas Refilling',
-      description: 'Refrigerant checks, leak detection, and gas refilling to restore your AC\'s cooling performance.',
-      icon: Gauge,
-    },
-  ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -44,11 +27,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [servicesRes, reviewsRes] = await Promise.all([
-          api.get('/services'),
-          api.get('/reviews'),
-        ]);
-        setServices(servicesRes.data.data.slice(0, 6));
+        const reviewsRes = await api.get('/reviews');
         setReviews(reviewsRes.data.data.slice(0, 3));
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -122,51 +101,12 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Services Overview */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              We offer comprehensive AC services to keep your cooling systems running efficiently
-            </p>
-          </div>
-          
-          <div className="grid gap-6 md:grid-cols-3">
-            {featuredServices.map((featuredService) => {
-              const service = services.find((item) =>
-                item.name.toLowerCase().includes(featuredService.name.toLowerCase()),
-              );
-              const Icon = featuredService.icon;
-
-              return (
-                <article
-                  key={featuredService.name}
-                  className="group flex min-h-[290px] flex-col border border-gray-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-primary-300 hover:shadow-xl"
-                >
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center bg-primary-100 text-primary-600 transition-colors duration-300 group-hover:bg-primary-600 group-hover:text-white">
-                    <Icon className="h-7 w-7" />
-                  </div>
-                  <h3 className="mb-3 text-xl font-semibold text-gray-900">{featuredService.name}</h3>
-                  <p className="mb-6 flex-grow leading-7 text-gray-600">{featuredService.description}</p>
-                  <Link
-                    to={service ? `/services/${service._id}` : '/services'}
-                    className="inline-flex items-center font-semibold text-primary-600 transition-colors hover:text-primary-700"
-                  >
-                    View Details <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </article>
-              );
-            })}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Link to="/services" className="btn-primary">
-              View All Services
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ServicesGrid
+        title="Our Services"
+        subtitle="We offer comprehensive AC services to keep your cooling systems running efficiently"
+        showViewAll={true}
+        limit={3}
+      />
 
       {/* Why Choose Us */}
       <section className="py-20 bg-gray-50">
