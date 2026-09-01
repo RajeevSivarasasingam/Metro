@@ -57,7 +57,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-3 text-gray-400">
                 <MapPin className="h-5 w-5 text-primary-400 mt-1" />
-                <span>123 Cool Street, HVAC City, TC 12345</span>
+                <span> Kuppillan North Kuppilan</span>
               </li>
             </ul>
           </div>
