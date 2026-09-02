@@ -6,7 +6,8 @@ import { ServicesGrid } from './Services';
  
 import img1 from '../assets/hero1.jpg';
 import img2 from '../assets/hero2.jpg';
-import img3 from '../assets/hero3.jpg';  
+import img3 from '../assets/hero3.jpg';
+import companyImage from '../assets/logo.png';
 
 const Home = () => {
   const [reviews, setReviews] = useState([]);
@@ -101,6 +102,49 @@ const Home = () => {
         </div>
       </section>
 
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="relative overflow-hidden rounded-[28px] shadow-2xl shadow-primary-100/60">
+              <img
+                src={companyImage}
+                alt="Metro Cool Engineering AC service team"
+                className="h-[420px] w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-sky-900/20 via-transparent to-primary-500/20" />
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary-600 mb-4">
+                Welcome to Metro Cool Engineering
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                We keep homes and businesses cool, comfortable, and running smoothly.
+              </h2>
+              <p className="text-lg text-gray-600 mb-5">
+                Metro Cool Engineering has built a trusted reputation for dependable AC installation,
+                repair, and maintenance services tailored to both residential and commercial clients.
+              </p>
+              <p className="text-gray-600 mb-8">
+                Our experienced team combines technical expertise, honest advice, and responsive service to
+                keep your cooling systems efficient, energy-saving, and reliable all year round.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="rounded-2xl border border-primary-100 bg-primary-50 p-4 shadow-sm">
+                  <p className="text-2xl font-bold text-primary-700">10+ Years</p>
+                  <p className="text-sm text-gray-600 mt-1">Industry experience</p>
+                </div>
+                <div className="rounded-2xl border border-sky-100 bg-sky-50 p-4 shadow-sm">
+                  <p className="text-2xl font-bold text-sky-700">24/7</p>
+                  <p className="text-sm text-gray-600 mt-1">Customer support</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <ServicesGrid
         title="Our Services"
         subtitle="We offer comprehensive AC services to keep your cooling systems running efficiently"
@@ -109,37 +153,43 @@ const Home = () => {
       />
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-primary-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose Us</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-600 mb-3">
+              Why Choose Us
+            </p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Quality service you can trust</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               We're committed to providing the best AC services with unmatched quality and reliability
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="card text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-primary-200">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary-500 to-sky-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110">
                 <Clock className="h-8 w-8 text-primary-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Fast Response</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Fast Response</h3>
               <p className="text-gray-600">Quick turnaround times for all your AC service needs</p>
             </div>
-            
-            <div className="card text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-primary-600" />
+
+            <div className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-primary-200">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-sky-500 to-cyan-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="w-16 h-16 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110">
+                <Shield className="h-8 w-8 text-sky-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Professional Service</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Professional Service</h3>
               <p className="text-gray-600">Certified technicians with years of experience</p>
             </div>
-            
-            <div className="card text-center">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <DollarSign className="h-8 w-8 text-primary-600" />
+
+            <div className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-primary-200">
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-cyan-500 to-primary-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110">
+                <DollarSign className="h-8 w-8 text-cyan-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Affordable Pricing</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Affordable Pricing</h3>
               <p className="text-gray-600">Competitive rates with no hidden charges</p>
             </div>
           </div>
@@ -150,42 +200,45 @@ const Home = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-600 mb-3">
+              How It Works
+            </p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">A simple 4-step process</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Getting your AC serviced is easy with our simple 4-step process
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+            <div className="group rounded-3xl border border-slate-200 bg-gradient-to-br from-primary-50 to-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-primary-200">
+              <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold shadow-lg shadow-primary-200 transition-transform duration-300 group-hover:scale-110">
                 1
               </div>
-              <h3 className="text-xl font-semibold mb-2">Book a Service</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Book a Service</h3>
               <p className="text-gray-600">Schedule your AC service online or call us</p>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+
+            <div className="group rounded-3xl border border-slate-200 bg-gradient-to-br from-sky-50 to-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-sky-200">
+              <div className="w-16 h-16 bg-sky-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold shadow-lg shadow-sky-200 transition-transform duration-300 group-hover:scale-110">
                 2
               </div>
-              <h3 className="text-xl font-semibold mb-2">We Confirm</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">We Confirm</h3>
               <p className="text-gray-600">We confirm your appointment and technician details</p>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+
+            <div className="group rounded-3xl border border-slate-200 bg-gradient-to-br from-cyan-50 to-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-cyan-200">
+              <div className="w-16 h-16 bg-cyan-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold shadow-lg shadow-cyan-200 transition-transform duration-300 group-hover:scale-110">
                 3
               </div>
-              <h3 className="text-xl font-semibold mb-2">Technician Visits</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Technician Visits</h3>
               <p className="text-gray-600">Our expert technician arrives at your location</p>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+
+            <div className="group rounded-3xl border border-slate-200 bg-gradient-to-br from-primary-50 to-sky-50 p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-primary-200">
+              <div className="w-16 h-16 bg-primary-700 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold shadow-lg shadow-primary-200 transition-transform duration-300 group-hover:scale-110">
                 4
               </div>
-              <h3 className="text-xl font-semibold mb-2">Service Complete</h3>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Service Complete</h3>
               <p className="text-gray-600">Your AC is serviced and running perfectly</p>
             </div>
           </div>
