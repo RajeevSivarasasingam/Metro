@@ -4,7 +4,7 @@ import { ArrowRight, Gauge, Settings, ShieldCheck, Sparkles, Wrench } from 'luci
 import api from '../services/api';
 
 import pic1 from '../assets/Ac_install.jpg';
-import pic2 from '../assets/Ac_repair.jpg';
+import pic2 from '/src/assets/Ac_repair.jpg';
 import pic3 from '../assets/Ac_gas_refill.jpg';
 import pic4 from '../assets/Ac_maintenance.jpg';
 import pic5 from '../assets/Ac_cleaning.jpg';
