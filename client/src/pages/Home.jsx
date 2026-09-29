@@ -116,7 +116,7 @@ const Home = () => {
 
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-primary-600 mb-4">
-                Welcome to Metro Cool Engineering
+                Welcome to Metro Cool Engineering 
               </p>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 We keep homes and businesses cool, comfortable, and running smoothly.
