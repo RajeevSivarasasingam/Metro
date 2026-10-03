@@ -13,7 +13,7 @@ import pic6 from '../assets/Ac_trouble.jpg';
 const serviceCatalog = [
   {
     name: 'AC Installation',
-    description: 'Professional installation for homes and businesses, set up for reliable and energy-efficient cooling.',
+    description: 'Professional installation for a homes and businesses, set up for reliable and energy-efficient cooling.',
     image: pic1,
     icon: Settings,
   },
