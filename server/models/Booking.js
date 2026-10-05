@@ -22,7 +22,7 @@ const bookingSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: [true, 'Please provide email'],
+    default: undefined,
     trim: true,
   },
   service: {
@@ -87,3 +87,4 @@ bookingSchema.pre('save', function(next) {
 });
 
 module.exports = mongoose.model('Booking', bookingSchema);
+
