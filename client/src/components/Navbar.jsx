@@ -1,60 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
-import logo from '../assets/logo_only.png';
-
-
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <nav className="bg-secondary-900 text-white sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <img src={logo} alt="Metro Cool Engineering Logo" className="h-16 w-16" />
-            <span className="text-xl font-bold">Metro Cool Engineering</span>
-          </Link>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="hover:text-primary-400 transition-colors">Home</Link>
-            <Link to="/about" className="hover:text-primary-400 transition-colors">About</Link>
-            <Link to="/services" className="hover:text-primary-400 transition-colors">Services</Link>
-            <Link to="/contact" className="hover:text-primary-400 transition-colors">Contact</Link>
-            <a href="tel:+94771754835" className="flex items-center gap-2 font-semibold hover:text-primary-400 transition-colors">
-              <Phone className="h-4 w-4" />
-              +94 (077) 175 4835
-            </a>
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md hover:bg-secondary-800 transition-colors"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-secondary-800">
-          <div className="px-4 pt-2 pb-4 space-y-2">
-            <Link to="/" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Home</Link>
-            <Link to="/about" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>About</Link>
-            <Link to="/services" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Services</Link>
-            <Link to="/contact" className="block py-2 hover:text-primary-400 transition-colors" onClick={() => setIsOpen(false)}>Contact</Link>
-            <a href="tel:+94771754835" className="flex items-center gap-2 py-2 font-semibold hover:text-primary-400 transition-colors">
-              <Phone className="h-4 w-4" />
-               +94 (077) 175 4835
-            </a>
-          </div>
-        </div>
-      )}
-    </nav>
-  );
-};
-
-export default Navbar;
+import React, { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { Phone, Mail, MapPin, Menu, X } from 'lucide-react';
+import { Brand, Button, company } from './SiteUI';
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+  const {
+    pathname
+  } = useLocation();
+  useEffect(() => setOpen(false), [pathname]);
+  const links = [['/', 'Home'], ['/services', 'Services'], ['/about', 'About Us'], ['/contact', 'Contact Us']].map(([to, label]) => <NavLink key={to} to={to} end={to === '/'} onClick={() => setOpen(false)}>{label}</NavLink>);
+  return <div className="site-header"><div className="topline"><div className="container"><span><MapPin size={12} aria-hidden="true" /> YOUR LOCAL AC SERVICE TEAM IN JAFFNA</span><a href={`mailto:${company.email}`}><Mail size={12} aria-hidden="true" /> {company.email}</a></div></div><header className="header"><div className="container header-inner"><Brand /><nav className="nav" aria-label="Main navigation">{links}</nav><div className="header-actions"><a className="phone-link" href={company.tel}><Phone size={17} aria-hidden="true" />{company.phone}</a><Button to="/booking">Book a Service</Button><button type="button" className="icon-button menu-toggle" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen(!open)} onKeyDown={e => {
+            if (e.key === 'Escape') setOpen(false);
+          }}>{open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}</button></div></div><nav id="mobile-nav" className={`mobile-nav${open ? ' open' : ''}`} aria-label="Mobile navigation" onKeyDown={e => {
+        if (e.key === 'Escape') {
+          setOpen(false);
+          document.querySelector('.menu-toggle')?.focus();
+        }
+      }}>{links}<Button to="/booking">Book a Service</Button></nav></header></div>;
+}
