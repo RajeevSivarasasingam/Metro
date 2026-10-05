@@ -1,74 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Brand } from './SiteUI';
+export default function Footer() {
+  return <><footer className="footer"><div className="container"><div className="footer-grid"><div className="footer-about"><Brand /><p>Professional air-conditioning solutions you can rely on.</p><div className="socials"><span aria-label="Facebook profile placeholder" title="Facebook profile to be added"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 21v-8h3l1-4h-4V7c0-1 1-2 2-2h2V2h-3c-4 0-6 2-6 5v2H7v4h3v8" /></svg></span><span aria-label="Instagram profile placeholder" title="Instagram profile to be added"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><path d="M17.5 6.5h.01" /></svg></span><a href="https://wa.me/94771754835" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z" /><path d="M8 10h8M8 14h5" /></svg></a></div></div><div><h3>Quick Links</h3><ul><li><Link to="/">Home</Link></li><li><Link to="/services">Services</Link></li><li><Link to="/about">About Us</Link></li><li><Link to="/contact">Contact Us</Link></li></ul></div><div><h3>Our Services</h3><ul><li><Link to="/services/repair">AC Repair</Link></li><li><Link to="/services/installation">AC Installation</Link></li><li><Link to="/services/maintenance">AC Maintenance</Link></li><li><Link to="/services/cleaning">AC Cleaning</Link></li><li><Link to="/services/gas-refilling">Gas Refilling</Link></li><li><Link to="/services/troubleshooting">AC Troubleshooting</Link></li></ul></div><div className="footer-contact"><h3>Let's Talk</h3><ul><li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.18 2 2 0 0 1 5.08 3h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.79a2 2 0 0 1-.45 2.11L9.05 10.89a16 16 0 0 0 4.06 4.06l1.27-1.27a2 2 0 0 1 2.11-.45c.89.33 1.83.56 2.79.69A2 2 0 0 1 22 16.92Z" /></svg><a href="tel:+94771754835">077 175 4835</a></li><li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 6 9 7 9-7" /></svg><a href="mailto:metrocoolengineering@gmail.com">metrocoolengineering@gmail.com</a></li><li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></svg><address>Kuppilan North, Kuppilan,<br />Jaffna, Sri Lanka</address></li></ul></div></div><div className="footer-bottom"><p>© {new Date().getFullYear()} Metro Cool Engineering. All Rights Reserved.</p><span>Built around your comfort.</span></div></div></footer><a className="floating-whatsapp" href="https://wa.me/94771754835" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z" /><path d="M8 10h8M8 14h5" /></svg> WhatsApp Us</a></>;
+}
 
-const Footer = () => {
-  return (
-    <footer className="bg-secondary-900 text-white mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">Metro Cool Engineering</h3>
-            <p className="text-gray-400 mb-4">
-              Professional AC repair, installation, and maintenance services for homes and businesses.
-            </p>
-            <div className="flex space-x-4">
-              <Facebook className="h-5 w-5 hover:text-primary-400 cursor-pointer" />
-              <Twitter className="h-5 w-5 hover:text-primary-400 cursor-pointer" />
-              <Instagram className="h-5 w-5 hover:text-primary-400 cursor-pointer" />
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-400 hover:text-primary-400 transition-colors">Home</Link></li>
-              <li><Link to="/about" className="text-gray-400 hover:text-primary-400 transition-colors">About Us</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-primary-400 transition-colors">Services</Link></li>
-              <li><Link to="/contact" className="text-gray-400 hover:text-primary-400 transition-colors">Contact</Link></li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>AC Repair</li>
-              <li>AC Installation</li>
-              <li>AC Maintenance</li>
-              <li>AC Cleaning</li>
-              <li>Gas Refilling</li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <ul className="space-y-3">
-              <li className="flex items-center space-x-3 text-gray-400">
-                <Phone className="h-5 w-5 text-primary-400" />
-                <span>+94 (077) 175 4835</span>
-              </li>
-              <li className="flex items-center space-x-3 text-gray-400">
-                <Mail className="h-5 w-5 text-primary-400" />
-                <span>metrocoolengineer@gmail.com</span>
-              </li>
-              <li className="flex items-start space-x-3 text-gray-400">
-                <MapPin className="h-5 w-5 text-primary-400 mt-1" />
-                <span> Kuppillan North Kuppilan</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Metro Cool Engineering. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
